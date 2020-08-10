@@ -1,17 +1,24 @@
 import Head from "next/head";
+import Layout from "../components/layout";
+import { getAllPostsForHome } from "../lib/api";
+import { CMS_NAME } from "../lib/constants";
 
-export default function Home() {
+export default function Home({ preview, allPosts }) {
+  const posts = allPosts;
+
+  console.log(posts);
   return (
     <div className="container">
-      <Head>
-        <title>PETER MOREAU</title>
-        <link rel="icon" href="/images/favicon_io/favicon.ico" />
-      </Head>
+      <Layout preview={preview}>
+        <Head>
+          <title>PETER MOREAU</title>
+          <link rel="icon" href="/images/favicon_io/favicon.ico" />
+        </Head>
 
-      <main></main>
+        <main></main>
 
-      <footer></footer>
-
+        <footer></footer>
+      </Layout>
       <style jsx>{``}</style>
 
       <style jsx global>{`
@@ -30,4 +37,11 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export async function getStaticProps({ preview = false, previewData }) {
+  const allPosts = await getAllPostsForHome(previewData);
+  return {
+    props: { preview, allPosts },
+  };
 }
