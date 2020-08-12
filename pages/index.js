@@ -6,7 +6,6 @@ import { CMS_NAME } from "../lib/constants";
 export default function Home({ preview, allPosts }) {
   const posts = allPosts;
 
-  console.log(posts);
   return (
     <div className="container">
       <Layout preview={preview}>
@@ -15,7 +14,7 @@ export default function Home({ preview, allPosts }) {
           <link rel="icon" href="/images/favicon_io/favicon.ico" />
         </Head>
 
-        <main></main>
+        <main>{`${process.env.PRISMIC_REPOSITORY_NAME}`}</main>
 
         <footer></footer>
       </Layout>
