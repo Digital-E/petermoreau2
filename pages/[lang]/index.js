@@ -1,19 +1,18 @@
 import Head from "next/head";
-import Layout from "../components/layout";
-import { getAllPostsForHome } from "../lib/api";
-import { CMS_NAME } from "../lib/constants";
+import Layout from "../../components/layout";
+import { getAllPostsForHome } from "../../lib/api";
+import { CMS_NAME } from "../../lib/constants";
+import { useRouter } from "next/router";
 
-export default function Home({ preview, allPosts }) {
+export default function Index({ preview, allPosts }) {
+  const router = useRouter();
   const posts = allPosts;
+
+  console.log(router.query.lang);
 
   return (
     <div className="container">
       <Layout preview={preview}>
-        <Head>
-          <title>PETER MOREAU</title>
-          <link rel="icon" href="/images/favicon_io/favicon.ico" />
-        </Head>
-
         <main>{`${process.env.PRISMIC_REPOSITORY_NAME}`}</main>
 
         <footer></footer>
@@ -38,9 +37,9 @@ export default function Home({ preview, allPosts }) {
   );
 }
 
-export async function getStaticProps({ preview = false, previewData }) {
-  const allPosts = await getAllPostsForHome(previewData);
-  return {
-    props: { preview, allPosts },
-  };
-}
+// export async function getStaticProps({ preview = false, previewData }) {
+//   const allPosts = await getAllPostsForHome(previewData);
+//   return {
+//     props: { preview, allPosts },
+//   };
+// }

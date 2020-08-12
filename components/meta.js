@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "../lib/constants";
 
-export default function Meta() {
+export default function Meta({ title }) {
   return (
     <Head>
       <link
@@ -9,6 +9,7 @@ export default function Meta() {
         sizes="180x180"
         href="/favicon_io/apple-touch-icon.png"
       />
+      <link rel="icon" href="/images/favicon_io/favicon.ico" />
       <link
         rel="icon"
         type="image/png"
@@ -21,7 +22,7 @@ export default function Meta() {
         sizes="16x16"
         href="/favicon/favicon-16x16.png"
       />
-      <link rel="manifest" href="/favicon/site.webmanifest" />
+      <link rel="manifest" href="/images/favicon_io/site.webmanifest" />
       {/* <link
         rel="mask-icon"
         href="/favicon/safari-pinned-tab.svg"
@@ -37,6 +38,7 @@ export default function Meta() {
         content={`A statically generated blog example using Next.js and ${CMS_NAME}.`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <title>{title}</title>
     </Head>
   );
 }
