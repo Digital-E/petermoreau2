@@ -42,7 +42,7 @@ export default ({ data }) => {
         <Title>{data.title}</Title>
       </TitleWrapper>
       <Actualites>
-        {data === undefined
+        {data.posts === undefined
           ? null
           : data.posts.map((post) => (
               <Actualite data={post} readMoreText={data.readMoreText} />
