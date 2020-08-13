@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Layout from "../../../components/layout";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../../lib/api";
-import { getLanguage } from "../../../utils/language";
+import { getLanguage, convertLanguage } from "../../../utils/language";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -27,23 +27,7 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  let getLang = (lang) => {
-    switch (lang) {
-      case "en":
-        return "en-gb";
-        break;
-      case "es":
-        return "es-es";
-        break;
-      case "fr":
-        return "fr-fr";
-        break;
-      default:
-        return "en-gb";
-    }
-  };
-
-  let lang = getLang(params.lang);
+  let lang = convertLanguage(params.lang);
 
   const data = await getPostAndMorePosts(params.slug, lang, previewData);
 

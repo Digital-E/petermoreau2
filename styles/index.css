@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Century Expanded Regular";
+  src: url("/fonts/CenturyExpandedRegular.woff") format("woff"),
+    url("/fonts/CenturyExpandedRegular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Century Expanded Italic";
+  src: url("/fonts/CenturyExpandedItalic.woff") format("woff"),
+    url("/fonts/CenturyExpandedItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Druk Medium";
+  src: url("/fonts/Druk-Medium-Web.woff") format("woff"),
+    url("/fonts/Druk-Medium-Web.woff2") format("woff2");
+}

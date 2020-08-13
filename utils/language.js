@@ -5,6 +5,22 @@ export const fallbackLanguage = "en";
 
 export const languages = ["en", "es", "fr"];
 
+export const convertLanguage = (lang) => {
+  switch (lang) {
+    case "en":
+      return "en-gb";
+      break;
+    case "es":
+      return "es-es";
+      break;
+    case "fr":
+      return "fr-fr";
+      break;
+    default:
+      return "en-gb";
+  }
+};
+
 export const validateLanguage = (lang) => {
   return languages.includes(lang) ? lang : fallbackLanguage;
 };

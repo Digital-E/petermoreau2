@@ -1,4 +1,4 @@
-// import '../styles/index.css'
+import "../styles/index.css";
 import { configureLanguage } from "../utils/language";
 
 function App({ Component, pageProps }) {
