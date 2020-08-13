@@ -1,17 +1,16 @@
 import Layout from "../../components/layout";
-import { getAllPostsForHome } from "../../lib/api";
+import { getAllPostsForHome, getActualitesData } from "../../lib/api";
 
 import Header from "../../components/header";
+import Actualites from "../../components/actualites";
 
 import { convertLanguage } from "../../utils/language";
 
 import { useRouter } from "next/router";
 
-export default function Index({ preview, allPosts }) {
+export default function Index({ preview, allPosts, actualitesRawData }) {
   const router = useRouter();
   const posts = allPosts;
-
-  // console.log(posts);
 
   let headerData = {
     navigationElements: [
@@ -27,6 +26,15 @@ export default function Index({ preview, allPosts }) {
     subTitleTwo: "Inscrit·e·s aux Barreaux de Genève, Paris et Californie",
   };
 
+  let actualitesData = {
+    title: actualitesRawData ? actualitesRawData[0].node.title[0].text : null,
+    readMoreText: actualitesRawData
+      ? actualitesRawData[0].node.read_more_text
+      : null,
+    moreText: actualitesRawData ? actualitesRawData[0].node.more_text : null,
+    posts: allPosts,
+  };
+
   return (
     <div className="container">
       <Layout preview={preview} title="PETER MOREAU">
@@ -36,6 +44,7 @@ export default function Index({ preview, allPosts }) {
         {post.node.title}
         <footer></footer> */}
         <Header data={headerData} />
+        <Actualites data={actualitesData} />
       </Layout>
       <style jsx>{``}</style>
 
@@ -61,8 +70,10 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   let lang = convertLanguage(params.lang);
 
   const allPosts = await getAllPostsForHome(lang, previewData);
+  const actualitesRawData = await getActualitesData(lang, previewData);
+
   return {
-    props: { preview, allPosts },
+    props: { preview, allPosts, actualitesRawData },
   };
 }
 

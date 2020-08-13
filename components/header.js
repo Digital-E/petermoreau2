@@ -12,9 +12,26 @@ const NavBar = styled.div`
 `;
 
 const Logo = styled.div`
+  margin: 1.5rem;
   svg {
     width: 70%;
   }
+`;
+
+const BottomBar = styled.div`
+  display: flex;
+  font-family: "Century Expanded Regular";
+  font-size: 0.75rem;
+  display: flex;
+  padding: 0.3rem 1.5rem;
+  border-top: 1px solid black;
+  border-bottom: 5px solid black;
+`;
+
+const LeftCol = styled.div``;
+
+const RightCol = styled.div`
+  margin-left: 5rem;
 `;
 
 export default ({ data }) => {
@@ -47,6 +64,10 @@ export default ({ data }) => {
           />
         </svg>
       </Logo>
+      <BottomBar>
+        <LeftCol>{data.subTitleOne}</LeftCol>
+        <RightCol>{data.subTitleTwo}</RightCol>
+      </BottomBar>
     </Container>
   );
 };

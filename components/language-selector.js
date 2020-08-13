@@ -50,8 +50,6 @@ export default () => {
   const router = useRouter();
   let linkWrapperRefs = useRef([]);
 
-  console.log(router.query.lang, linkWrapperRefs);
-
   const [languages] = useState([
     {
       code: "en",

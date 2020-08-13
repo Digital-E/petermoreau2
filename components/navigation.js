@@ -6,7 +6,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   font-family: Druk Medium;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 `;
 
 const LeftCol = styled.div`
