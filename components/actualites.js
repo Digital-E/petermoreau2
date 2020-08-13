@@ -42,9 +42,11 @@ export default ({ data }) => {
         <Title>{data.title}</Title>
       </TitleWrapper>
       <Actualites>
-        {data?.posts.map((post) => (
-          <Actualite data={post} readMoreText={data.readMoreText} />
-        ))}
+        {data === undefined
+          ? null
+          : data.posts.map((post) => (
+              <Actualite data={post} readMoreText={data.readMoreText} />
+            ))}
       </Actualites>
       <ShowMoreWrapper>
         <ShowMore onClick={() => showMore()}>
