@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import Layout from "../../components/layout";
-import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
+import Layout from "../../../components/layout";
+import { getAllPostsWithSlug, getPostAndMorePosts } from "../../../lib/api";
+import { getLanguage } from "../../../utils/language";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -10,12 +11,12 @@ export default function Post({ post, morePosts, preview }) {
   }
 
   return (
-    <Layout preview={preview} title={post.title}>
+    <Layout preview={preview} title={post?.title}>
       {router.isFallback ? (
         <div>Loading…</div>
       ) : (
         <>
-          <article>{post.title}</article>
+          <article>{post?.text[0].text}</article>
           {/* {morePosts && morePosts.length > 0 && (
               <MoreStories posts={morePosts} />
             )} */}
@@ -26,7 +27,24 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const lang = "en-gb";
+  let getLang = (lang) => {
+    switch (lang) {
+      case "en":
+        return "en-gb";
+        break;
+      case "es":
+        return "es-es";
+        break;
+      case "fr":
+        return "fr-fr";
+        break;
+      default:
+        return "en-gb";
+    }
+  };
+
+  let lang = getLang(params.lang);
+
   const data = await getPostAndMorePosts(params.slug, lang, previewData);
 
   return {
@@ -42,7 +60,10 @@ export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug();
 
   return {
-    paths: allPosts?.map(({ node }) => `/posts/${node._meta.uid}`) || [],
+    paths:
+      allPosts?.map(
+        ({ node }) => `/${getLanguage(node._meta.lang)}/posts/${node._meta.uid}`
+      ) || [],
     fallback: true,
   };
 }

@@ -8,8 +8,6 @@ function App({ Component, pageProps }) {
 App.getInitialProps = async ({ component, ctx }) => {
   const language = configureLanguage(ctx);
 
-  console.log("language:", language);
-
   return {
     language,
   };

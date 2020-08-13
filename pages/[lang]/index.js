@@ -1,20 +1,17 @@
-import Head from "next/head";
 import Layout from "../../components/layout";
 import { getAllPostsForHome } from "../../lib/api";
-import { CMS_NAME } from "../../lib/constants";
+
 import { useRouter } from "next/router";
 
 export default function Index({ preview, allPosts }) {
   const router = useRouter();
   const posts = allPosts;
 
-  console.log(router.query.lang);
-
   return (
     <div className="container">
       <Layout preview={preview}>
         <main>{`${process.env.PRISMIC_REPOSITORY_NAME}`}</main>
-
+        Page is in: {`${router.query.lang}`}
         <footer></footer>
       </Layout>
       <style jsx>{``}</style>
