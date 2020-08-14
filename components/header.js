@@ -6,13 +6,19 @@ import Navigation from "./navigation";
 const Container = styled.div``;
 
 const NavBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
+  z-index: 999;
+  background: white;
 
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 `;
 
 const Logo = styled.div`
-  margin: 1.5rem;
+  margin: 3rem 1.5rem 1.5rem 1.5rem;
   svg {
     width: 70%;
   }
@@ -21,10 +27,10 @@ const Logo = styled.div`
 const BottomBar = styled.div`
   display: flex;
   font-family: "Century Expanded Regular";
-  font-size: 0.75rem;
+  font-size: 1rem;
   display: flex;
   padding: 0.3rem 1.5rem;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
   border-bottom: 5px solid black;
 `;
 

@@ -1,14 +1,27 @@
 import Layout from "../../components/layout";
-import { getAllPostsForHome, getActualitesData } from "../../lib/api";
+import {
+  getAllPostsForHome,
+  getActualitesData,
+  getPourquoiData,
+  getCommentData,
+} from "../../lib/api";
 
 import Header from "../../components/header";
 import Actualites from "../../components/actualites";
+import Pourquoi from "../../components/pourquoi";
+import Comment from "../../components/comment";
 
 import { convertLanguage } from "../../utils/language";
 
 import { useRouter } from "next/router";
 
-export default function Index({ preview, allPosts, actualitesRawData }) {
+export default function Index({
+  preview,
+  allPosts,
+  actualitesRawData,
+  pourquoiRawData,
+  commentRawData,
+}) {
   const router = useRouter();
   const posts = allPosts;
 
@@ -27,12 +40,23 @@ export default function Index({ preview, allPosts, actualitesRawData }) {
   };
 
   let actualitesData = {
-    title: actualitesRawData ? actualitesRawData[0].node.title[0].text : null,
+    title: actualitesRawData ? actualitesRawData[0].node.title : null,
     readMoreText: actualitesRawData
       ? actualitesRawData[0].node.read_more_text
       : null,
     moreText: actualitesRawData ? actualitesRawData[0].node.more_text : null,
     posts: allPosts,
+  };
+
+  let pourquoiData = {
+    title: pourquoiRawData ? pourquoiRawData[0].node.title[0].text : null,
+    text: pourquoiRawData ? pourquoiRawData[0].node.text[0].text : null,
+  };
+
+  let commentData = {
+    title: commentRawData ? commentRawData[0].node.title : null,
+    textOne: commentRawData ? commentRawData[0].node.text_one : null,
+    textTwo: commentRawData ? commentRawData[0].node.text_two : null,
   };
 
   return (
@@ -45,6 +69,8 @@ export default function Index({ preview, allPosts, actualitesRawData }) {
         <footer></footer> */}
         <Header data={headerData} />
         <Actualites data={actualitesData} />
+        <Pourquoi data={pourquoiData} />
+        <Comment data={commentData} />
       </Layout>
       <style jsx>{``}</style>
 
@@ -71,9 +97,17 @@ export async function getStaticProps({ params, preview = false, previewData }) {
 
   const allPosts = await getAllPostsForHome(lang, previewData);
   const actualitesRawData = await getActualitesData(lang, previewData);
+  const pourquoiRawData = await getPourquoiData(lang, previewData);
+  const commentRawData = await getCommentData(lang, previewData);
 
   return {
-    props: { preview, allPosts, actualitesRawData },
+    props: {
+      preview,
+      allPosts,
+      actualitesRawData,
+      pourquoiRawData,
+      commentRawData,
+    },
   };
 }
 

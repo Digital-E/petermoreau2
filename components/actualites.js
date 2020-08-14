@@ -3,16 +3,22 @@ import styled from "styled-components";
 
 import Actualite from "./actualite";
 
+const PrismicDOM = require("prismic-dom");
+
 const Container = styled.div``;
 
 const TitleWrapper = styled.div`
   display: flex;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+  h1,h2,h3,h4,h5 {
   font-family: "Druk Medium";
   font-size: 15rem;
   font-weight: 300;
+  margin: 0;
+  }
+
   margin: 0 auto;
   padding: 0;
 `;
@@ -34,12 +40,14 @@ const ShowMore = styled.div`
 `;
 
 export default ({ data }) => {
-  const showMore = () => {};
 
+const showMore = () => {
+
+}
   return (
     <Container>
       <TitleWrapper>
-        <Title>{data.title}</Title>
+        <Title dangerouslySetInnerHTML={{__html: data.title && PrismicDOM.RichText.asHtml(data.title) }}/>
       </TitleWrapper>
       <Actualites>
         {data.posts === undefined

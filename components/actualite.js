@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
 
-  border-top: 1px solid black;
+  border-top: 2px solid black;
 
   > div {
     flex-basis: 50%;
@@ -35,6 +35,11 @@ const Title = styled.div`
 
 const Text = styled.div`
   font-family: "Century Expanded Regular";
+  font-size: 1.25rem;
+
+  p {
+    margin: 0;
+  }
 `;
 
 const ShowMore = styled.div`
@@ -52,17 +57,34 @@ export default (props) => {
   let data = props.data.node;
   let [text, setText] = useState("");
   let shownText = [];
-  let hiddenText = PrismicDOM.RichText.asHtml(data.text);
+  let [hasClicked, setHasClicked] = useState(false);
+  let hiddenText;
 
   useEffect(() => {
     hiddenText = PrismicDOM.RichText.asHtml(data.text);
     shownText = PrismicDOM.RichText.asHtml(data.text).split("").splice(0, 350);
-    shownText.push("...");
 
+    if(shownText.length < 350) {
+      shownText = PrismicDOM.RichText.asHtml(data.text).split("")
+      return setHasClicked(true);
+    } 
+    shownText.push("...");
+  });
+
+  useEffect(() => {
     setText(shownText.join(""));
   }, []);
 
+  useEffect(() => {
+    setText(shownText.join(""));
+    setHasClicked(false);
+}, [props]);
+
+
+
+
   const showMore = () => {
+    setHasClicked(true)
     setText(hiddenText);
   };
 
@@ -78,9 +100,12 @@ export default (props) => {
             __html: text,
           }}
         />
+        {
+          !hasClicked &&
         <ShowMore onClick={() => showMore()}>
           + <span>{props.readMoreText}</span>
         </ShowMore>
+        }
       </ColRight>
     </Container>
   );
