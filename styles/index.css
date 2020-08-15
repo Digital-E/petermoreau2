@@ -15,3 +15,8 @@
   src: url("/fonts/Druk-Medium-Web.woff") format("woff"),
     url("/fonts/Druk-Medium-Web.woff2") format("woff2");
 }
+
+p {
+  /* word-break: break-all; */
+  hyphens: auto;
+}

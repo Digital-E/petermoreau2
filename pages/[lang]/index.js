@@ -4,12 +4,16 @@ import {
   getActualitesData,
   getPourquoiData,
   getCommentData,
+  getQuoiData,
+  getQuiData,
+  getContactData
 } from "../../lib/api";
 
 import Header from "../../components/header";
 import Actualites from "../../components/actualites";
 import Pourquoi from "../../components/pourquoi";
 import Comment from "../../components/comment";
+import Quoi from "../../components/quoi";
 
 import { convertLanguage } from "../../utils/language";
 
@@ -21,6 +25,9 @@ export default function Index({
   actualitesRawData,
   pourquoiRawData,
   commentRawData,
+  quoiRawData,
+  quiRawData,
+  contactRawData,
 }) {
   const router = useRouter();
   const posts = allPosts;
@@ -49,14 +56,32 @@ export default function Index({
   };
 
   let pourquoiData = {
-    title: pourquoiRawData ? pourquoiRawData[0].node.title[0].text : null,
-    text: pourquoiRawData ? pourquoiRawData[0].node.text[0].text : null,
+    title: pourquoiRawData ? pourquoiRawData[0].node.title : null,
+    text: pourquoiRawData ? pourquoiRawData[0].node.text : null,
   };
 
   let commentData = {
     title: commentRawData ? commentRawData[0].node.title : null,
     textOne: commentRawData ? commentRawData[0].node.text_one : null,
     textTwo: commentRawData ? commentRawData[0].node.text_two : null,
+  };
+
+  let quoiData = {
+    title: quoiRawData ? quoiRawData[0].node.title : null,
+    subtitle: quoiRawData ? quoiRawData[0].node.subtitle : null,
+    columns: quoiRawData ? quoiRawData[0].node.columns : null,
+  };
+
+  let quiData = {
+    title: quiRawData ? quiRawData[0].node.title : null,
+    people: quiRawData ? quiRawData[0].node.people : null,
+  };
+
+  let contactData = {
+    title: contactRawData ? contactRawData[0].node.title : null,
+    email: contactRawData ? contactRawData[0].node.email : null,
+    number: contactRawData ? contactRawData[0].node.number : null,
+    address: contactRawData ? contactRawData[0].node.address : null,
   };
 
   return (
@@ -71,6 +96,7 @@ export default function Index({
         <Actualites data={actualitesData} />
         <Pourquoi data={pourquoiData} />
         <Comment data={commentData} />
+        <Quoi data={quoiData}/>
       </Layout>
       <style jsx>{``}</style>
 
@@ -99,6 +125,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const actualitesRawData = await getActualitesData(lang, previewData);
   const pourquoiRawData = await getPourquoiData(lang, previewData);
   const commentRawData = await getCommentData(lang, previewData);
+  const quoiRawData = await getQuoiData(lang, previewData);
+  const quiRawData = await getQuiData(lang, previewData);
+  const contactRawData = await getContactData(lang, previewData);
 
   return {
     props: {
@@ -107,6 +136,8 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       actualitesRawData,
       pourquoiRawData,
       commentRawData,
+      quoiRawData,
+      contactRawData
     },
   };
 }
