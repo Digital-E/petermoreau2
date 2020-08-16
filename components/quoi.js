@@ -24,7 +24,7 @@ h1,h2,h3,h4,h5 {
 
 const TextWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 `;
 
 const Text = styled.div`
@@ -53,7 +53,7 @@ const Columns = styled.div`
 const Column = styled.div`
 padding: 1rem 1rem 2rem 1rem;
 
-border-right: 1px solid black;
+border-right: 2px solid black;
 
 :last-child {
   border-right: 0px solid black;

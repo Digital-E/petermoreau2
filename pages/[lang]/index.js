@@ -14,6 +14,8 @@ import Actualites from "../../components/actualites";
 import Pourquoi from "../../components/pourquoi";
 import Comment from "../../components/comment";
 import Quoi from "../../components/quoi";
+import Qui from "../../components/qui";
+import Contact from "../../components/contact";
 
 import { convertLanguage } from "../../utils/language";
 
@@ -97,6 +99,8 @@ export default function Index({
         <Pourquoi data={pourquoiData} />
         <Comment data={commentData} />
         <Quoi data={quoiData}/>
+        <Qui data={quiData}/>
+        <Contact data={contactData}/>
       </Layout>
       <style jsx>{``}</style>
 
@@ -137,6 +141,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       pourquoiRawData,
       commentRawData,
       quoiRawData,
+      quiRawData,
       contactRawData
     },
   };

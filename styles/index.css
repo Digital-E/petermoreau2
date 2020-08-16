@@ -17,6 +17,5 @@
 }
 
 p {
-  /* word-break: break-all; */
   hyphens: auto;
 }

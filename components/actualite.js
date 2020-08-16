@@ -40,6 +40,10 @@ const Text = styled.div`
   p {
     margin: 0;
   }
+
+  p:nth-child(n+2) {
+    text-indent: 50px;
+  }
 `;
 
 const ShowMore = styled.div`

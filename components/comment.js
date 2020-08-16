@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5 {
 
 const TextWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
   padding: 1rem 1.5rem;
 
   p {
@@ -48,6 +48,10 @@ const TextTwo = styled.div`
   font-family: "Century Expanded Regular";
   font-size: 1.25rem;
   font-weight: 300;
+
+  p:nth-child(n+2) {
+    text-indent: 50px;
+  }
 `;
 
 export default ({ data }) => {
