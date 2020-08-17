@@ -1,13 +1,15 @@
 import Layout from "../../components/layout";
 import {
   getAllPostsForHome,
+  getHeaderData,
   getActualitesData,
   getPourquoiData,
   getCommentData,
   getQuoiData,
   getQuiData,
-  getContactData
+  getContactData,
 } from "../../lib/api";
+
 
 import Header from "../../components/header";
 import Actualites from "../../components/actualites";
@@ -24,6 +26,7 @@ import { useRouter } from "next/router";
 export default function Index({
   preview,
   allPosts,
+  headerRawData,
   actualitesRawData,
   pourquoiRawData,
   commentRawData,
@@ -34,18 +37,11 @@ export default function Index({
   const router = useRouter();
   const posts = allPosts;
 
+
   let headerData = {
-    navigationElements: [
-      "Actualités",
-      "Pourquoi",
-      "Comment",
-      "Quoi",
-      "Qui",
-      "Contact",
-    ],
-    subTitleOne:
-      "Etude d’avocat·e·s | Law Firm | Despacho de abogadas y abogados",
-    subTitleTwo: "Inscrit·e·s aux Barreaux de Genève, Paris et Californie",
+    navigationElements: headerRawData? headerRawData[0].node.navigation : null,
+    subTitleOne: headerRawData? headerRawData[0].node.text_one : null,
+    subTitleTwo: headerRawData? headerRawData[0].node.text_two : null,
   };
 
   let actualitesData = {
@@ -89,18 +85,27 @@ export default function Index({
   return (
     <div className="container">
       <Layout preview={preview} title="PETER MOREAU">
-        {/* <main>{`${process.env.PRISMIC_REPOSITORY_NAME}`}</main>
-        <LanguageSelector />
-        Page is in: {`${router.query.lang}`}
-        {post.node.title}
-        <footer></footer> */}
-        <Header data={headerData} />
+      <div section-id="1" className="section section-1">
+        <Header data={headerData}/>
+      </div>
+      <div section-id="2" className="section section-2">
         <Actualites data={actualitesData} />
+      </div>
+      <div section-id="3" className="section section-3">
         <Pourquoi data={pourquoiData} />
+      </div>
+      <div section-id="4" className="section section-4">
         <Comment data={commentData} />
+      </div>
+      <div section-id="5" className="section section-5">
         <Quoi data={quoiData}/>
+      </div>
+      <div section-id="6" className="section section-6">
         <Qui data={quiData}/>
+      </div>
+      <div section-id="7" className="section section-7">
         <Contact data={contactData}/>
+      </div>
       </Layout>
       <style jsx>{``}</style>
 
@@ -126,6 +131,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   let lang = convertLanguage(params.lang);
 
   const allPosts = await getAllPostsForHome(lang, previewData);
+  const headerRawData = await getHeaderData(lang, previewData);
   const actualitesRawData = await getActualitesData(lang, previewData);
   const pourquoiRawData = await getPourquoiData(lang, previewData);
   const commentRawData = await getCommentData(lang, previewData);
@@ -137,6 +143,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
     props: {
       preview,
       allPosts,
+      headerRawData,
       actualitesRawData,
       pourquoiRawData,
       commentRawData,
