@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: fit-content;
   font-family: Druk Medium;
   font-size: 1.5rem;
 
@@ -13,6 +13,27 @@ const Container = styled.div`
     background-color: black;
     color: white;
   }
+
+  @media(min-width: 992px) {
+    width: 100%;
+  }
+
+  @media(max-width: 992px) {
+    height: 30px;
+
+    :after {
+      position: fixed;
+      content: "";
+      top: 0;
+      right: 0;
+      height: 30px;
+      width: 30px;
+      background: rgb(255,255,255);
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    }  
+  }
+
+
 `;
 
 const LeftCol = styled.div`
@@ -38,9 +59,11 @@ const Element = styled.div`
   display: flex;
   align-items: center;
 
-  :hover {
-    background-color: black;
-    color: white;
+  @media(min-width: 992px) {
+    :hover {
+      background-color: black;
+      color: white;
+    }
   }
 `;
 
@@ -49,96 +72,88 @@ let elementRefs = useRef([]);
 let [isActive, setIsActive] = useState([]);
 let interSectionObservers = null;
 
-  useEffect(() => {
-    if(data === null) return
-    let initArray = [];
-    for(let i = 0; i < data.length; i++) {
-      initArray.push(false)
-    }
+  // useEffect(() => {
+  //   if(data === null) return
+  //   let initArray = [];
+  //   for(let i = 0; i < data.length; i++) {
+  //     initArray.push(false)
+  //   }
 
-    setIsActive([...initArray]);
+  //   setIsActive([...initArray]);
 
-  }, [data]);
+  // }, [data]);
 
 
 
 
   const navClick = (index) => {
+
+    if(index === -1) {
+      return window.gsap.to(window, {duration: 1, scrollTo: 0})
+    }
     window.gsap.to(window, {duration: 1, scrollTo: `.section-${index + 2}`})
 
 
-    let newIsActive = isActive;
+    // let newIsActive = isActive;
 
-    for(let i = 0; i < newIsActive.length; i++) {
-      newIsActive[i] = false;
-    }
-    newIsActive[index] = true;
+    // for(let i = 0; i < newIsActive.length; i++) {
+    //   newIsActive[i] = false;
+    // }
+    // newIsActive[index] = true;
 
-    setIsActive([...newIsActive]);
+    // setIsActive([...newIsActive]);
   }
 
-  const navActive = (index) => {
+  // const navActive = (index) => {
 
-    let newIsActive = isActive;
+  //   let newIsActive = isActive;
 
-    for(let i = 0; i < newIsActive.length; i++) {
-      newIsActive[i] = false;
-    }
-    newIsActive[index] = true;
+  //   for(let i = 0; i < newIsActive.length; i++) {
+  //     newIsActive[i] = false;
+  //   }
+  //   newIsActive[index] = true;
 
-    setIsActive([...newIsActive]);
-  }
+  //   setIsActive([...newIsActive]);
+  // }
 
   //Intersection Observer Set-up
 
   useEffect(()=>{
-    let options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0
-    }
-    
-    let callback = (entries, observer) => {
-      entries.forEach(entry => {
-        let sectionId = entry.target.getAttribute("section-id")
-        console.log(entry.target.getAttribute("section-id"))
-
-        navActive(sectionId - 2);
-
-        console.log(entry)
-        // Each entry describes an intersection change for one observed
-        // target element:
-        //   entry.boundingClientRect
-        //   entry.intersectionRatio
-        //   entry.intersectionRect
-        //   entry.isIntersecting
-        //   entry.rootBounds
-        //   entry.target
-        //   entry.time
-      });
-    };     
+    window.addEventListener("scroll",()=>{
+      let sections = document.querySelectorAll(".section");
+      let scrollPosition = window.scrollY
 
 
-    let allSections = document.querySelectorAll(".section")
+      sections.forEach(section => {
+        if(section.offsetTop <= scrollPosition) {
+          Array.from(document.querySelector(".nav").children).forEach(item => item.classList.remove("is-active"))
 
-    allSections.forEach((section, index) => {
-      let observer = new IntersectionObserver(callback, options);
-      let target = document.querySelector(`.section-${index + 1}`);
-      
-      observer.observe(target); 
-    }) 
-   
-       
-  },[]);
+        if(Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 2] === undefined) return
+
+        if(scrollPosition === document.body.scrollHeight - window.innerHeight + 48) {
+            return Array.from(document.querySelector(".nav").children)[5].classList.add("is-active")
+          }
+        
+          
+          Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 2].classList.add("is-active")
+
+        }
+      })
+    })
+  });
 
   return (
     <Container>
       <LeftCol>
         <div onClick={() => navClick(-1)}>PM</div>
       </LeftCol>
-      <RightCol>
+      <RightCol className="nav">
         {data?.map((el, index) => (
-          <Element key={index} ref={el => elementRefs.current[index] = el} onClick={() => navClick(index)} className={isActive[index] ? "is-active" : ""}>{el.navigation_element}</Element>
+          <Element key={index} ref={el => elementRefs.current[index] = el} 
+          onClick={() => navClick(index)} 
+          // className={isActive[index] ? "is-active" : ""}
+          >
+          {el.navigation_element}</Element>
         ))}
       </RightCol>
     </Container>

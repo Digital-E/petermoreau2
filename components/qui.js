@@ -23,18 +23,22 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-family: "Druk Medium";
-    font-size: 15rem;
-    font-weight: 300;
-    margin: 0;
-  }
+h1,h2,h3,h4,h5 {
+  font-family: "Druk Medium";
+  font-size: 7rem;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
   margin: 0 auto;
   padding: 0;
+
+  @media(min-width: 992px) {
+    h1,h2,h3,h4,h5 {
+      font-size: 15rem;
+    }    
+  }
 `;
 
 const Dropdowns = styled.div``;
@@ -45,16 +49,24 @@ const DropdownHead = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Name = styled.div`
   margin: 0;
   font-family: "Century Expanded Regular";
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 300;
   padding: 1.5rem;
   text-align: center;
   width: 100%;
+
+  @media(min-width: 992px) {  
+    h1,h2,h3,h4,h5 {
+    font-size: 3rem;
+    padding: 1.5rem;
+    }  
+  }
 `;
 
 const Arrow = styled.div``;
@@ -63,20 +75,33 @@ const DropdownContent = styled.div`
   display: flex;
   flex-direction: row;
   border-top: 2px solid black;
+  flex-wrap: wrap;
 
   > div {
+    flex-basis: 100%;
+  }
+
+  @media(min-width: 992px) {
+    flex-wrap: nowrap;
+
+      > div {
     flex-basis: 50%;
+  }
   }
 `;
 
 const LeftCol = styled.div`
-  border-right: 2px solid black;
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
   border-bottom: 2px solid black;
+
+  @media(min-width: 992px) {
+    border-right: 2px solid black;
+  }
 `;
 
 const RightCol = styled.div`
@@ -89,12 +114,15 @@ const RightCol = styled.div`
 const Role = styled.div`
   margin: 0;
   font-family: "Century Expanded Regular";
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   font-weight: 300;
   padding: 0.75rem;
   text-align: center;
-
   border-bottom: 2px solid black;
+
+  @media(min-width: 992px) {  
+    font-size: 1.7rem;
+  }
 `;
 
 const Text = styled.div`
@@ -120,24 +148,39 @@ const Info = styled.div`
   font-family: "Century Expanded Regular";
   font-size: 1.125rem;
   font-weight: 300;
+  flex-wrap: wrap;
 
   a {
     color: black;
     text-decoration: none;
   }
+
+  @media(min-width: 992px) {
+    flex-wrap: nowrap;
+  }
 `;
 
 const InfoLeftCol = styled.div`
-  flex-basis: 50%;
+  flex-basis: 100%;
   display: flex;
   flex-direction: column;
+
+    @media(min-width: 992px) {
+    flex-basis: 50%;
+  }
 `;
 
 const InfoRightCol = styled.div`
-  flex-basis: 50%;
+  flex-basis: 100%;
+  padding-top: 1.5rem;
 
   p {
     margin: 0;
+  }
+
+  @media(min-width: 992px) {
+    padding-top: 0;
+    flex-basis: 50%;
   }
 `;
 

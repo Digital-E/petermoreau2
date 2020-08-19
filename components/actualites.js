@@ -14,13 +14,19 @@ const TitleWrapper = styled.div`
 const Title = styled.div`
   h1,h2,h3,h4,h5 {
   font-family: "Druk Medium";
-  font-size: 15rem;
+  font-size: 7rem;
   font-weight: 300;
   margin: 0;
   }
 
   margin: 0 auto;
   padding: 0;
+
+  @media(min-width: 992px) {
+    h1,h2,h3,h4,h5 {
+    font-size: 15rem;
+    }    
+  }
 `;
 
 const Actualites = styled.div``;

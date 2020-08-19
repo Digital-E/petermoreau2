@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Century Expanded Regular";
-  src: url("/fonts/CenturyExpandedRegular.woff") format("woff"),
-    url("/fonts/CenturyExpandedRegular.woff2") format("woff2");
+  src: url("/fonts/petermoreau-medium-webfont.woff") format("woff"),
+    url("/fonts/petermoreau-medium-webfont.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Century Expanded Italic";
-  src: url("/fonts/CenturyExpandedItalic.woff") format("woff"),
-    url("/fonts/CenturyExpandedItalic.woff2") format("woff2");
+  src: url("/fonts/petermoreauitalic-medium-webfont.woff") format("woff"),
+    url("/fonts/petermoreauitalic-medium-webfont.woff2") format("woff2");
 }
 
 @font-face {
@@ -16,6 +16,16 @@
     url("/fonts/Druk-Medium-Web.woff2") format("woff2");
 }
 
+*::-webkit-scrollbar{
+  display: none;
+}
+
 p {
   hyphens: auto;
+}
+
+@media(max-width: 992px) {
+  p {
+    font-size: 1.125rem !important;
+  }
 }

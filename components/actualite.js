@@ -8,12 +8,16 @@ const PrismicDOM = require("prismic-dom");
 const Container = styled.div`
   padding: 1rem 1.5rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   border-top: 2px solid black;
 
   > div {
     flex-basis: 50%;
+  }
+
+  @media(min-width: 992px) {
+    flex-direction: row;
   }
 `;
 
@@ -44,6 +48,7 @@ const Text = styled.div`
   p:nth-child(n+2) {
     text-indent: 50px;
   }
+
 `;
 
 const ShowMore = styled.div`

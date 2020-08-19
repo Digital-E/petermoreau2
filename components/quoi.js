@@ -11,15 +11,22 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-
 h1,h2,h3,h4,h5 {
   font-family: "Druk Medium";
-  font-size: 15rem;
+  font-size: 7rem;
   font-weight: 300;
   margin: 0;
+  padding: 0;
 }
+
   margin: 0 auto;
   padding: 0;
+
+  @media(min-width: 992px) {
+    h1,h2,h3,h4,h5 {
+      font-size: 15rem;
+    }    
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -33,29 +40,52 @@ const Text = styled.div`
     h1,h2,h3,h4,h5 {
     margin: 0;
     font-family: "Century Expanded Regular";
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 300;
     padding: 1.5rem;
     text-align: center;
     }
+
+@media(min-width: 992px) {  
+    h1,h2,h3,h4,h5 {
+    font-size: 3rem;
+    padding: 1.5rem;
+    }  
+  }
 `;
 
 const Columns = styled.div`
-  display: flex;  
+  display: flex;
+  flex-wrap: wrap;
 
   > div {
-    flex-basis: 25%;
+    flex-basis: 100%;
   }
 
     border-bottom: 5px solid black;
+
+@media(min-width: 992px) {
+    flex-wrap: nowrap;
+    > div {
+    flex-basis: 25%;
+  }
+}
 `
 
 const Column = styled.div`
 padding: 1rem 1rem 2rem 1rem;
 
-border-right: 2px solid black;
+border-bottom: 2px solid black;
 
 :last-child {
+  border-bottom: 0px solid black;
+}
+
+@media(min-width: 992px) {
+  border-bottom: none;
+  border-right: 2px solid black;
+
+  :last-child {
   border-right: 0px solid black;
 }
 `

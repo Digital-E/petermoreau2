@@ -1,4 +1,6 @@
 import Layout from "../../components/layout";
+
+
 import {
   getAllPostsForHome,
   getHeaderData,
@@ -22,6 +24,9 @@ import Contact from "../../components/contact";
 import { convertLanguage } from "../../utils/language";
 
 import { useRouter } from "next/router";
+
+
+
 
 export default function Index({
   preview,

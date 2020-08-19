@@ -13,7 +13,7 @@ const NavBar = styled.div`
   display: flex;
   z-index: 999;
   background: white;
-
+  overflow-x: scroll;
   border-bottom: 1px solid black;
 `;
 
@@ -26,18 +26,27 @@ const Logo = styled.div`
 
 const BottomBar = styled.div`
   display: flex;
+  flex-direction: column;
   font-family: "Century Expanded Regular";
   font-size: 1rem;
   display: flex;
   padding: 0.3rem 1.5rem;
   border-top: 2px solid black;
   border-bottom: 5px solid black;
+
+@media(min-width: 992px) {
+  flex-direction: row;
+}
 `;
 
 const LeftCol = styled.div``;
 
 const RightCol = styled.div`
+margin-left: 0;
+
+@media(min-width: 992px) {
   margin-left: 5rem;
+}
 `;
 
 export default ({ data }) => {

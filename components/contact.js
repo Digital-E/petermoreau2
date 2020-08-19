@@ -15,21 +15,31 @@ const TitleWrapper = styled.div`
 const Title = styled.div`
   h1,h2,h3,h4,h5 {
     font-family: "Druk Medium";
-    font-size: 15rem;
+    font-size: 7rem;
     font-weight: 300;
     margin: 0;
+    padding: 0;
   }
-  margin: 0 auto;
-  padding: 0;
+
+    margin: 0 auto;
+    padding: 0;
+
+    @media(min-width: 992px) {
+      h1,h2,h3,h4,h5 {
+        font-size: 15rem;
+      }    
+    }
 `;
 
 const Row = styled.div`
 display: flex;
+flex-direction: column;
 justify-content: center;
 font-family: "Century Expanded Regular";
 font-size: 1.125rem;
 font-weight: 300;
 padding: 1.5rem 0;
+align-items: center;
 
 a {
   color: black;
@@ -42,6 +52,10 @@ p {
 
 div:nth-child(n+1) {
   margin: 0 1rem;
+}
+
+@media(min-width: 992px) {
+  flex-direction: row;
 }
 `
 
