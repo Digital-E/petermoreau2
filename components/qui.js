@@ -15,6 +15,16 @@ const Container = styled.div`
     overflow: hidden;
     transition-duration: 1s;
   }
+
+  .arrow-active {
+    transform: rotateZ(0deg);
+    transition-duration: 0.3s;
+  }
+
+  .arrow-inactive {
+    transform: rotateZ(180deg);
+    transition-duration: 0.3s;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -69,7 +79,11 @@ const Name = styled.div`
   }
 `;
 
-const Arrow = styled.div``;
+const Arrow = styled.div`
+    height: 40px;
+    width: 40px;
+    margin-right: 1.5rem;
+`;
 
 const DropdownContent = styled.div`
   display: flex;
@@ -190,6 +204,7 @@ export default ({ data }) => {
   let dropdownRef = useRef([]);
   let [isClicked, setIsClicked] = useState([]);
 
+
   useEffect(() => {
     if(data.people === null) return
     let initArray = [];
@@ -224,7 +239,7 @@ export default ({ data }) => {
             <Dropdown key={index}>
               <DropdownHead onClick={() => toggleClick(index)}>
                 <Name>{item.name}</Name>
-                <Arrow>+</Arrow>
+                <Arrow className={isClicked[index] ? "arrow-active" : "arrow-inactive"}><svg viewBox="0 0 39.42 39.42"><polygon points="20.81 27.61 20.81 7.98 18.62 7.98 18.62 27.61 14.83 23.74 13.26 25.21 19.71 31.44 26.16 25.21 24.63 23.74 20.81 27.61"/><path d="M19.71,39.42A19.71,19.71,0,1,1,39.42,19.71,19.73,19.73,0,0,1,19.71,39.42ZM19.71,2A17.71,17.71,0,1,0,37.42,19.71,17.73,17.73,0,0,0,19.71,2Z"/></svg></Arrow>
               </DropdownHead>
               <DropdownContent
                 ref={(el) => (dropdownRef.current[index] = el)}

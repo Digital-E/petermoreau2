@@ -54,13 +54,24 @@ const Text = styled.div`
 const ShowMore = styled.div`
   cursor: pointer;
   width: fit-content;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
 
   > span {
     font-family: "Druk Medium";
     font-size: 1.3rem;
     font-weight: 300;
+    padding-left: 0.3rem;
   }
 `;
+
+const Plus = styled.div`
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+`
+
 
 export default (props) => {
   let data = props.data.node;
@@ -112,7 +123,7 @@ export default (props) => {
         {
           !hasClicked &&
         <ShowMore onClick={() => showMore()}>
-          + <span>{props.readMoreText}</span>
+          <Plus><svg viewBox="0 0 39.42 39.42"><path d="M19.71,39.42A19.71,19.71,0,1,1,39.42,19.71,19.73,19.73,0,0,1,19.71,39.42ZM19.71,2A17.71,17.71,0,1,0,37.42,19.71,17.73,17.73,0,0,0,19.71,2Z"/><polygon points="29.29 17.79 20.71 17.79 20.71 10.13 18.71 10.13 18.71 17.79 10.13 17.79 10.13 19.79 18.71 19.79 18.71 29.29 20.71 29.29 20.71 19.79 29.29 19.79 29.29 17.79"/></svg></Plus> <span>{props.readMoreText}</span>
         </ShowMore>
         }
       </ColRight>
