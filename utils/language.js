@@ -55,7 +55,14 @@ export const redirectToLanguage = (
 };
 
 export const setLanguageCookie = (ctx, language) => {
-  setCookie(ctx, "language", language, {
+  let object
+
+  if(ctx) {
+    object = ctx
+  } else {
+    object = {}
+  }
+  setCookie(object, "language", language, {
     maxAge: 30 * 24 * 60 * 60,
     path: "/",
   });
