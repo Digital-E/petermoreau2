@@ -40,8 +40,7 @@ export const getLanguage = (lang, ctx) => {
 };
 
 export const redirectToLanguage = (
-  // language = fallbackLanguage
-  language
+  language = fallbackLanguage
   , res) => {
 
   if (res) {
@@ -79,6 +78,7 @@ export const configureLanguage = (ctx) => {
 
   if (asPath === "/") {
     redirectToLanguage(lang, res);
+    setLanguageCookie(ctx, lang);
   } else {
     lang = validateLanguage(query.lang);
     setLanguageCookie(ctx, lang);
