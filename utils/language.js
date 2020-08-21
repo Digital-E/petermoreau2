@@ -30,7 +30,8 @@ export const getLanguage = (lang, ctx) => {
   if (lang === undefined || ctx === undefined) {
     language = fallbackLanguage;
   } else {
-    language = lang.match(/[a-zA-Z\-]{2,10}/g)[0] || fallbackLanguage;
+    language = lang.match(/[a-zA-Z\-]{2,10}/g)[0] 
+    // || fallbackLanguage;
   }
 
   language = language.split("-")[0];
@@ -38,7 +39,11 @@ export const getLanguage = (lang, ctx) => {
   return getLanguageCookie(ctx) ?? validateLanguage(language);
 };
 
-export const redirectToLanguage = (language, res) => {
+export const redirectToLanguage = (
+  // language = fallbackLanguage
+  language
+  , res) => {
+
   if (res) {
     res.writeHead(302, {
       Location: `/${language}/`,
@@ -70,6 +75,7 @@ export const configureLanguage = (ctx) => {
     : window.navigator.language;
 
   let lang = getLanguage(language, ctx);
+
 
   if (asPath === "/") {
     redirectToLanguage(lang, res);
