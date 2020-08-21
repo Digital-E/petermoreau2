@@ -75,14 +75,18 @@ export const configureLanguage = (ctx) => {
 
   let lang = getLanguage(language, ctx);
 
+  let path = asPath
 
-  if (asPath === "/") {
-    redirectToLanguage(lang, res);
-    setLanguageCookie(ctx, lang);
-  } else {
-    lang = validateLanguage(query.lang);
-    setLanguageCookie(ctx, lang);
+  if(process.client) {
+    path = window.location.pathname
   }
+
+  if (path === "/") {
+      redirectToLanguage(lang, res);
+    } else {
+      lang = validateLanguage(query.lang);
+      setLanguageCookie(ctx, lang);
+    }    
 
   return lang;
 };

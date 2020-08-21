@@ -44,9 +44,7 @@ export default function Index({
   const posts = allPosts;
 
   useEffect(()=>{
-    // let language = configureLanguage(ctx)
 
-    // console.log(language)
   },[])
 
 
