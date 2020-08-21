@@ -1,4 +1,7 @@
+import React, {useEffect} from "react"
 import Layout from "../../components/layout";
+
+import { configureLanguage } from "../../utils/language";
 
 
 import {
@@ -39,6 +42,12 @@ export default function Index({
 }) {
   const router = useRouter();
   const posts = allPosts;
+
+  useEffect(()=>{
+    // let language = configureLanguage(ctx)
+
+    // console.log(language)
+  },[])
 
 
   let headerData = {
@@ -89,7 +98,7 @@ export default function Index({
 
   return (
     <div className="container">
-      <Layout preview={preview} title="PETER MOREAU">
+      <Layout preview={preview} title="PETER MOREAU" content={headerData.subTitleOne}>
       <div section-id="1" className="section section-1">
         <Header data={headerData}/>
       </div>

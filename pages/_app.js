@@ -5,12 +5,13 @@ function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 
-App.getInitialProps = async ({ component, ctx }) => {
-  const language = configureLanguage(ctx);
+// App.getInitialProps = async ({ component, ctx }) => {
 
-  return {
-    language,
-  };
-};
+//   const language = configureLanguage(ctx);
+
+//   return {
+//     language,
+//   };
+// };
 
 export default App;

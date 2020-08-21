@@ -62,11 +62,13 @@ export const getLanguageCookie = (ctx) => {
 };
 
 export const configureLanguage = (ctx) => {
+
   const { req, res, asPath, query } = ctx;
 
   const language = req
     ? req.headers["accept-language"]
     : window.navigator.language;
+
 
   let lang = getLanguage(language, ctx);
 
