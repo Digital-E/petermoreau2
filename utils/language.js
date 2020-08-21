@@ -69,6 +69,8 @@ export const configureLanguage = (ctx) => {
     ? req.headers["accept-language"]
     : window.navigator.language;
 
+    console.log(req.headers["accept-language"])
+
 
   let lang = getLanguage(language, ctx);
 
