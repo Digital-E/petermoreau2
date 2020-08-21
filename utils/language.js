@@ -38,7 +38,7 @@ export const getLanguage = (lang, ctx) => {
   return getLanguageCookie(ctx) ?? validateLanguage(language);
 };
 
-export const redirectToLanguage = (language = fallbackLanguage, res) => {
+export const redirectToLanguage = (language, res) => {
   if (res) {
     res.writeHead(302, {
       Location: `/${language}/`,
@@ -68,9 +68,6 @@ export const configureLanguage = (ctx) => {
   const language = req
     ? req.headers["accept-language"]
     : window.navigator.language;
-
-    console.log(req.headers["accept-language"])
-
 
   let lang = getLanguage(language, ctx);
 
