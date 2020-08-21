@@ -28,9 +28,11 @@ export const validateLanguage = (lang) => {
 export const getLanguage = (lang, ctx) => {
   let language
   if (lang === undefined || ctx === undefined) {
-    language = ""
+    language = fallbackLanguage;
+  } else {
+    language = lang.match(/[a-zA-Z\-]{2,10}/g)[0] || fallbackLanguage;
   }
-  language = lang.match(/[a-zA-Z\-]{2,10}/g)[0] || fallbackLanguage;
+
   language = language.split("-")[0];
 
   return getLanguageCookie(ctx) ?? validateLanguage(language);
