@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Actualite from "./actualite";
+import Image from "./image"
 
 const PrismicDOM = require("prismic-dom");
 
@@ -10,6 +11,11 @@ const Container = styled.div``;
 const TitleWrapper = styled.div`
   display: flex;
 `;
+
+const ImageWrapper = styled.div`
+  border-bottom: 2px solid black;
+`
+
 
 const Title = styled.div`
   h1,h2,h3,h4,h5 {
@@ -64,7 +70,15 @@ const showMore = () => {
 
 }
   return (
-    <Container >
+    <Container>
+      {
+        data.image !== null ?
+        <ImageWrapper>
+          <Image src={data.image}/>
+        </ImageWrapper>  
+        :
+        null
+      }  
       <TitleWrapper>
         <Title dangerouslySetInnerHTML={{__html: data.title && PrismicDOM.RichText.asHtml(data.title) }}/>
       </TitleWrapper>

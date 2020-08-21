@@ -29,7 +29,7 @@ const Logo = styled.div`
 `;
 
 const BottomBar = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   font-family: "Century Expanded Regular";
@@ -70,13 +70,13 @@ export default ({ data }) => {
     logoRef.style.height = "auto";
     document.querySelector(".section-2").style.marginTop = `0px`
      //Reset
-    let bottombarHeight = bottombarRef.getBoundingClientRect().height;
-    bottombarRef.style.marginTop = `${-bottombarHeight}px`;
     let marginSize = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     let logoHeight = logoRef.getBoundingClientRect().height;
     logoRef.style.height = `${logoHeight}px`;
     logoRef.style.position = "fixed";
-    document.querySelector(".section-2").style.marginTop = `${logoHeight + bottombarHeight + marginSize}px`
+    //
+    bottombarRef.style.top = `${logoHeight +  marginSize}px`;
+    document.querySelector(".section-2").style.marginTop = `${logoHeight +  marginSize}px`
   }
 
   useEffect(() => {

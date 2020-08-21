@@ -26,8 +26,6 @@ import { convertLanguage } from "../../utils/language";
 import { useRouter } from "next/router";
 
 
-
-
 export default function Index({
   preview,
   allPosts,
@@ -51,6 +49,7 @@ export default function Index({
 
   let actualitesData = {
     title: actualitesRawData ? actualitesRawData[0].node.title : null,
+    image: actualitesRawData ? actualitesRawData[0].node.image: null,
     readMoreText: actualitesRawData
       ? actualitesRawData[0].node.read_more_text
       : null,
