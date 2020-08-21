@@ -60,7 +60,7 @@ export const setLanguageCookie = (ctx, language) => {
   if(ctx) {
     object = ctx
   } else {
-    object = {}
+    object = null
   }
   setCookie(object, "language", language, {
     maxAge: 30 * 24 * 60 * 60,
