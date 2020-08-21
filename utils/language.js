@@ -1,7 +1,6 @@
 import Router from "next/router";
-// import { parseCookies, setCookie } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 
-import cookieCutter from 'cookie-cutter'
 
 export const fallbackLanguage = "en";
 
@@ -58,34 +57,14 @@ export const redirectToLanguage = (
 
 export const setLanguageCookie = (ctx, language) => {
 
-  // setCookie(ctx, "language", language, {
-  //   maxAge: 30 * 24 * 60 * 60,
-  //   path: "/",
-  // });
-
-  if(process.browser) {
-    document.cookie = `language=${language}`;
-  }
+  setCookie(ctx, "language", language, {
+    maxAge: 30 * 24 * 60 * 60,
+    path: "/",
+  });
 };
 
 export const getLanguageCookie = (ctx) => {
-  // return parseCookies(ctx).language;
-  if(process.browser) {
-    let cname = "language"
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";    
-  }
+  return parseCookies(ctx).language;
 };
 
 export const configureLanguage = (ctx) => {
