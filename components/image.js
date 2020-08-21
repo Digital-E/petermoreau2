@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState, useRef} from "react"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -24,11 +24,26 @@ const Container = styled.div`
 
 export default ({src}) => {
     let [hasLoaded, setHasLoaded] = useState(false);
+    let imageRef = useRef();
+
+    useEffect(()=>{
+        const img = imageRef.current;
+            if (img && img.complete) {
+                triggerHasLoaded();
+            }
+    },[])
+
+    const triggerHasLoaded = () => {
+        if(!hasLoaded) {
+            setHasLoaded(true)
+        }
+    }
+
 
 
     return src !== null ?  
         <Container aspectRatio={src.dimensions.height / src.dimensions.width * 100}>
-            <img className={hasLoaded && "show-image"} onLoad={() => setHasLoaded(true)} src={src.url}/>
+            <img ref={imageRef} className={hasLoaded && "show-image"} onLoad={() => triggerHasLoaded()} src={src.url}/>
         </Container>
         :
         null

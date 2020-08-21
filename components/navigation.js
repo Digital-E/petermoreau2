@@ -60,28 +60,14 @@ const Element = styled.div`
   align-items: center;
 
   @media(min-width: 992px) {
-    :hover {
-      background-color: black;
-      color: white;
-    }
+  :hover {
+    background-color: black;
+    color: white;
+  }
   }
 `;
 
 export default ({ data }) => {
-let elementRefs = useRef([]);
-let [isActive, setIsActive] = useState([]);
-let interSectionObservers = null;
-
-  // useEffect(() => {
-  //   if(data === null) return
-  //   let initArray = [];
-  //   for(let i = 0; i < data.length; i++) {
-  //     initArray.push(false)
-  //   }
-
-  //   setIsActive([...initArray]);
-
-  // }, [data]);
 
 
 
@@ -93,30 +79,8 @@ let interSectionObservers = null;
     }
     window.gsap.to(window, {duration: 1, scrollTo: `.section-${index + 2}`})
 
-
-    // let newIsActive = isActive;
-
-    // for(let i = 0; i < newIsActive.length; i++) {
-    //   newIsActive[i] = false;
-    // }
-    // newIsActive[index] = true;
-
-    // setIsActive([...newIsActive]);
   }
 
-  // const navActive = (index) => {
-
-  //   let newIsActive = isActive;
-
-  //   for(let i = 0; i < newIsActive.length; i++) {
-  //     newIsActive[i] = false;
-  //   }
-  //   newIsActive[index] = true;
-
-  //   setIsActive([...newIsActive]);
-  // }
-
-  //Intersection Observer Set-up
 
   useEffect(()=>{
     window.addEventListener("scroll",()=>{
@@ -130,7 +94,7 @@ let interSectionObservers = null;
 
         if(Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 2] === undefined) return
 
-        if(scrollPosition === document.body.scrollHeight - window.innerHeight + 48) {
+        if(scrollPosition === document.body.scrollHeight - window.innerHeight) {
             return Array.from(document.querySelector(".nav").children)[5].classList.add("is-active")
           }
         
@@ -149,9 +113,8 @@ let interSectionObservers = null;
       </LeftCol>
       <RightCol className="nav">
         {data?.map((el, index) => (
-          <Element key={index} ref={el => elementRefs.current[index] = el} 
+          <Element key={index}
           onClick={() => navClick(index)} 
-          // className={isActive[index] ? "is-active" : ""}
           >
           {el.navigation_element}</Element>
         ))}
