@@ -87,6 +87,7 @@ export default function Index({
     address: contactRawData ? contactRawData[0].node.address : null,
   };
 
+
   return (
     <div className="container">
       <Layout preview={preview} title="PETER MOREAU">

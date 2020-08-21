@@ -20,6 +20,11 @@
   display: none;
 }
 
+.section {
+  background-color: white;
+  position: relative;
+}
+
 p {
   hyphens: auto;
 }

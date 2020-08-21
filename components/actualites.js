@@ -64,7 +64,7 @@ const showMore = () => {
 
 }
   return (
-    <Container>
+    <Container >
       <TitleWrapper>
         <Title dangerouslySetInnerHTML={{__html: data.title && PrismicDOM.RichText.asHtml(data.title) }}/>
       </TitleWrapper>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import LanguageSelector from "./language-selector";
 import Navigation from "./navigation";
@@ -19,12 +19,17 @@ const NavBar = styled.div`
 
 const Logo = styled.div`
   margin: 3rem 1.5rem 1.5rem 1.5rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+
   svg {
     width: 70%;
   }
 `;
 
 const BottomBar = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   font-family: "Century Expanded Regular";
@@ -33,6 +38,8 @@ const BottomBar = styled.div`
   padding: 0.3rem 1.5rem;
   border-top: 2px solid black;
   border-bottom: 5px solid black;
+  width: 100%;
+  z-index: 1;
 
 @media(min-width: 992px) {
   flex-direction: row;
@@ -49,14 +56,38 @@ margin-left: 0;
 }
 `;
 
+
+
 export default ({ data }) => {
+
+
+  const setFixedLogo = () => {
+    let logoRef = document.querySelector("#logoRef");
+    //Reset
+    logoRef.style.position = "relative";
+    logoRef.style.height = "auto";
+    document.querySelector(".section-2").style.marginTop = `0px`
+     //Reset
+    let marginSize = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    let logoHeight = logoRef.getBoundingClientRect().height;
+    logoRef.style.height = `${logoHeight}px`;
+    logoRef.style.position = "fixed";
+    document.querySelector(".section-2").style.marginTop = `${logoHeight + marginSize}px`
+  }
+
+  useEffect(() => {
+    setFixedLogo();
+
+    window.addEventListener("resize", () => setFixedLogo())
+  },[])
+
   return (
     <Container>
       <NavBar>
         <Navigation data={data.navigationElements} />
         <LanguageSelector />
       </NavBar>
-      <Logo>
+      <Logo id="logoRef">
         <svg x="0px" y="0px" viewBox="0 0 976.7 642.4">
           <path
             d="M563.2,171.2h11.6c14.4,0,16.8,5.8,16.8,19.5v93.1c0,16.6,2.4,22,4.4,25.4H641v-2.1c-2-4.6-4.4-10-4.4-22.8V175.8
