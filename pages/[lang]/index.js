@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import Layout from "../../components/layout";
 
+
 import { configureLanguage } from "../../utils/language";
 
 
@@ -43,9 +44,6 @@ export default function Index({
   const router = useRouter();
   const posts = allPosts;
 
-  useEffect(()=>{
-
-  },[])
 
 
   let headerData = {
@@ -150,6 +148,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const quoiRawData = await getQuoiData(lang, previewData);
   const quiRawData = await getQuiData(lang, previewData);
   const contactRawData = await getContactData(lang, previewData);
+
 
   return {
     props: {
