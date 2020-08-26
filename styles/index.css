@@ -16,7 +16,7 @@
     url("/fonts/Druk-Medium-Web.woff2") format("woff2");
 }
 
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   display: none;
 }
 
@@ -29,8 +29,12 @@ p {
   hyphens: auto;
 }
 
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   p {
     font-size: 1.125rem !important;
   }
+}
+
+a {
+  color: black;
 }

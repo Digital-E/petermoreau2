@@ -1,9 +1,7 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react";
 import Layout from "../../components/layout";
 
-
 import { configureLanguage } from "../../utils/language";
-
 
 import {
   getAllPostsForHome,
@@ -16,7 +14,6 @@ import {
   getContactData,
 } from "../../lib/api";
 
-
 import Header from "../../components/header";
 import Actualites from "../../components/actualites";
 import Pourquoi from "../../components/pourquoi";
@@ -28,7 +25,6 @@ import Contact from "../../components/contact";
 import { convertLanguage } from "../../utils/language";
 
 import { useRouter } from "next/router";
-
 
 export default function Index({
   preview,
@@ -44,17 +40,15 @@ export default function Index({
   const router = useRouter();
   const posts = allPosts;
 
-
-
   let headerData = {
-    navigationElements: headerRawData? headerRawData[0].node.navigation : null,
-    subTitleOne: headerRawData? headerRawData[0].node.text_one : null,
-    subTitleTwo: headerRawData? headerRawData[0].node.text_two : null,
+    navigationElements: headerRawData ? headerRawData[0].node.navigation : null,
+    subTitleOne: headerRawData ? headerRawData[0].node.text_one : null,
+    subTitleTwo: headerRawData ? headerRawData[0].node.text_two : null,
   };
 
   let actualitesData = {
     title: actualitesRawData ? actualitesRawData[0].node.title : null,
-    image: actualitesRawData ? actualitesRawData[0].node.image: null,
+    image: actualitesRawData ? actualitesRawData[0].node.image : null,
     readMoreText: actualitesRawData
       ? actualitesRawData[0].node.read_more_text
       : null,
@@ -75,7 +69,6 @@ export default function Index({
 
   let quoiData = {
     title: quoiRawData ? quoiRawData[0].node.title : null,
-    subtitle: quoiRawData ? quoiRawData[0].node.subtitle : null,
     columns: quoiRawData ? quoiRawData[0].node.columns : null,
   };
 
@@ -89,33 +82,38 @@ export default function Index({
     email: contactRawData ? contactRawData[0].node.email : null,
     number: contactRawData ? contactRawData[0].node.number : null,
     address: contactRawData ? contactRawData[0].node.address : null,
+    titleTwo: contactRawData ? contactRawData[0].node.title_two : null,
+    text: contactRawData ? contactRawData[0].node.text : null,
   };
-
 
   return (
     <div className="container">
-      <Layout preview={preview} title="PETER MOREAU" content={headerData.subTitleOne}>
-      <div section-id="1" className="section section-1">
-        <Header data={headerData}/>
-      </div>
-      <div section-id="2" className="section section-2">
-        <Actualites data={actualitesData} />
-      </div>
-      <div section-id="3" className="section section-3">
-        <Pourquoi data={pourquoiData} />
-      </div>
-      <div section-id="4" className="section section-4">
-        <Comment data={commentData} />
-      </div>
-      <div section-id="5" className="section section-5">
-        <Quoi data={quoiData}/>
-      </div>
-      <div section-id="6" className="section section-6">
-        <Qui data={quiData}/>
-      </div>
-      <div section-id="7" className="section section-7">
-        <Contact data={contactData}/>
-      </div>
+      <Layout
+        preview={preview}
+        title="PETER MOREAU"
+        content={headerData.subTitleOne}
+      >
+        <div section-id="1" className="section section-1">
+          <Header data={headerData} />
+        </div>
+        <div section-id="2" className="section section-2">
+          <Actualites data={actualitesData} />
+        </div>
+        <div section-id="3" className="section section-3">
+          <Pourquoi data={pourquoiData} />
+        </div>
+        <div section-id="4" className="section section-4">
+          <Comment data={commentData} />
+        </div>
+        <div section-id="5" className="section section-5">
+          <Quoi data={quoiData} />
+        </div>
+        <div section-id="6" className="section section-6">
+          <Qui data={quiData} />
+        </div>
+        <div section-id="7" className="section section-7">
+          <Contact data={contactData} />
+        </div>
       </Layout>
       <style jsx>{``}</style>
 
@@ -149,7 +147,6 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const quiRawData = await getQuiData(lang, previewData);
   const contactRawData = await getContactData(lang, previewData);
 
-
   return {
     props: {
       preview,
@@ -160,7 +157,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       commentRawData,
       quoiRawData,
       quiRawData,
-      contactRawData
+      contactRawData,
     },
   };
 }
