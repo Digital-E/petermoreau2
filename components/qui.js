@@ -206,6 +206,13 @@ const InfoRightCol = styled.div`
 
 const RightColTop = styled.div``;
 
+const LinkWrapper = styled.div`
+  font-family: "Century Expanded Regular";
+  font-size: 1.25rem;
+  font-weight: 300;
+  padding: 1rem 1rem 1rem 1rem;
+`;
+
 export default ({ data }) => {
   let dropdownRef = useRef([]);
   let [isClicked, setIsClicked] = useState([]);
@@ -225,6 +232,8 @@ export default ({ data }) => {
     newIsClicked[index] = !isClicked[index];
     setIsClicked([...newIsClicked]);
   };
+
+  console.log(data.people);
 
   return (
     <Container>
@@ -273,6 +282,11 @@ export default ({ data }) => {
                           PrismicDOM.RichText.asHtml(item.description),
                       }}
                     />
+                    <LinkWrapper>
+                      <a href={item.link && item.link.url} target="_blank">
+                        {item.link_text}
+                      </a>
+                    </LinkWrapper>
                   </RightColTop>
                   <Info>
                     <InfoLeftCol>

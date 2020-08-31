@@ -78,7 +78,6 @@ export default ({ data }) => {
   let showAmount = 3;
 
   useEffect(() => {
-    // setShowAmount(1);
     if (allPosts !== undefined) {
       let postsToShow = allPosts.slice().splice(0, showAmount);
       setShowPosts(postsToShow);

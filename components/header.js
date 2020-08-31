@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import LanguageSelector from "./language-selector";
 import Navigation from "./navigation";
@@ -18,13 +18,19 @@ const NavBar = styled.div`
 `;
 
 const Logo = styled.div`
-  margin: 3rem 1.5rem 1.5rem 1.5rem;
+  margin: 2.5rem 1.5rem 1rem 1.5rem;
   width: 100%;
   top: 0;
   left: 0;
 
   svg {
-    width: 70%;
+    width: 60%;
+  }
+
+  @media (max-width: 576px) {
+    svg {
+      width: 70%;
+    }
   }
 `;
 
@@ -42,48 +48,47 @@ const BottomBar = styled.div`
   z-index: 1;
   background: white;
 
-@media(min-width: 992px) {
-  flex-direction: row;
-}
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
 `;
 
 const LeftCol = styled.div``;
 
 const RightCol = styled.div`
-margin-left: 0;
+  margin-left: 0;
 
-@media(min-width: 992px) {
-  margin-left: 5rem;
-}
+  @media (min-width: 992px) {
+    margin-left: 5rem;
+  }
 `;
 
-
-
 export default ({ data }) => {
-
-
   const setFixedLogo = () => {
     let logoRef = document.querySelector("#logoRef");
     let bottombarRef = document.querySelector("#bottombarRef");
     //Reset
     logoRef.style.position = "relative";
     logoRef.style.height = "auto";
-    document.querySelector(".section-2").style.marginTop = `0px`
-     //Reset
-    let marginSize = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    document.querySelector(".section-2").style.marginTop = `0px`;
+    //Reset
+    let marginSize =
+      3 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     let logoHeight = logoRef.getBoundingClientRect().height;
     logoRef.style.height = `${logoHeight}px`;
     logoRef.style.position = "fixed";
     //
-    bottombarRef.style.top = `${logoHeight +  marginSize}px`;
-    document.querySelector(".section-2").style.marginTop = `${logoHeight +  marginSize}px`
-  }
+    bottombarRef.style.top = `${logoHeight + marginSize}px`;
+    document.querySelector(".section-2").style.marginTop = `${
+      logoHeight + marginSize
+    }px`;
+  };
 
   useEffect(() => {
     setFixedLogo();
 
-    window.addEventListener("resize", () => setFixedLogo())
-  },[])
+    window.addEventListener("resize", () => setFixedLogo());
+  }, []);
 
   return (
     <Container>
