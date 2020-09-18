@@ -20,14 +20,14 @@ const Text = styled.div`
   font-family: "Century Expanded Regular";
   font-size: 1.25rem;
   font-weight: 300;
-  padding: 1rem 1.5rem;
+  // padding: 1rem 1.5rem;
 
   p:nth-child(n + 2) {
     text-indent: 50px;
   }
 
   @media (max-width: 992px) {
-    padding-top: 1.5rem;
+    // padding-top: 1.5rem;
   }
 `;
 
@@ -58,6 +58,25 @@ const Title = styled.div`
   }
 `;
 
+const TitleTwo = styled.div`
+  text-align: center;
+
+  padding: 1rem 0;
+  // margin: 0 auto;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0;
+    padding: 0;
+    font-family: "Druk Medium";
+    font-size: 2rem;
+    font-weight: 300;
+  }
+`;
+
 const Row = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,7 +86,7 @@ const Row = styled.div`
   font-weight: 300;
   padding: 1.5rem 0;
   align-items: center;
-  border-bottom: 5px solid black;
+  border-bottom: 2px solid black;
 
   a {
     color: black;
@@ -84,6 +103,35 @@ const Row = styled.div`
 
   @media (min-width: 992px) {
     flex-direction: row;
+  }
+`;
+
+const RowTwo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Century Expanded Regular";
+  font-size: 1.125rem;
+  font-weight: 300;
+  padding: 0 0 1.5rem 0;
+  align-items: center;
+  border-bottom: 0px solid black;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  div:nth-child(n + 1) {
+    margin: 0 1rem;
+  }
+
+  @media (min-width: 992px) {
+    flex-direction: column;
   }
 `;
 
@@ -112,20 +160,34 @@ export default ({ data }) => {
           }}
         />
       </Row>
-      <TitleWrapper>
-        <Title
+      <RowTwo>
+        {/* <TextWrapper> */}
+        <TitleTwo
           dangerouslySetInnerHTML={{
             __html: data.titleTwo && PrismicDOM.RichText.asHtml(data.titleTwo),
           }}
         />
-      </TitleWrapper>
-      <TextWrapper>
         <Text
           dangerouslySetInnerHTML={{
             __html: data.text && PrismicDOM.RichText.asHtml(data.text),
           }}
         />
-      </TextWrapper>
+        {/* </TextWrapper> */}
+      </RowTwo>
+      {/* <TitleWrapper>
+        <Title
+          dangerouslySetInnerHTML={{
+            __html: data.titleTwo && PrismicDOM.RichText.asHtml(data.titleTwo),
+          }}
+        />
+      </TitleWrapper> */}
+      {/* <TextWrapper>
+        <Text
+          dangerouslySetInnerHTML={{
+            __html: data.text && PrismicDOM.RichText.asHtml(data.text),
+          }}
+        />
+      </TextWrapper> */}
     </Container>
   );
 };
