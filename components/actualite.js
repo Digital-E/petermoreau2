@@ -93,12 +93,12 @@ export default (props) => {
 
   useEffect(() => {
     setText(shownText.join(""));
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     setText(shownText.join(""));
     setHasClicked(false);
-  }, []);
+  }, [data]);
 
   const showMore = () => {
     setHasClicked(true);

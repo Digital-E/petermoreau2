@@ -233,8 +233,6 @@ export default ({ data }) => {
     setIsClicked([...newIsClicked]);
   };
 
-  console.log(data.people);
-
   return (
     <Container>
       <TitleWrapper>
