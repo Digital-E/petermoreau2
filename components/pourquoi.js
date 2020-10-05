@@ -11,20 +11,27 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-
-h1,h2,h3,h4,h5 {
-  font-family: "Druk Medium";
-  font-size: 7rem;
-  font-weight: 300;
-  margin: 0;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Druk Medium";
+    font-size: 7rem;
+    font-weight: 300;
+    margin: 0;
+  }
   margin: 0 auto;
   padding: 0;
 
-  @media(min-width: 992px) {
-    h1,h2,h3,h4,h5 {
+  @media (min-width: 992px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
       font-size: 15rem;
-    }    
+    }
   }
 `;
 
@@ -38,6 +45,7 @@ const Text = styled.div`
   font-size: 3rem;
   font-weight: 300;
   padding: 1.5rem;
+  text-align: center;
 
   p {
     margin: 0;
@@ -48,15 +56,15 @@ export default ({ data }) => {
   return (
     <Container>
       <TitleWrapper>
-        <Title 
-                  dangerouslySetInnerHTML={{
+        <Title
+          dangerouslySetInnerHTML={{
             __html: data.title && PrismicDOM.RichText.asHtml(data.title),
           }}
         />
       </TitleWrapper>
       <TextWrapper>
-        <Text 
-                  dangerouslySetInnerHTML={{
+        <Text
+          dangerouslySetInnerHTML={{
             __html: data.title && PrismicDOM.RichText.asHtml(data.text),
           }}
         />
