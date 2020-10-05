@@ -23,7 +23,7 @@ const Text = styled.div`
   // padding: 1rem 1.5rem;
 
   p:nth-child(n + 2) {
-    text-indent: 50px;
+    // text-indent: 50px;
   }
 
   @media (max-width: 992px) {

@@ -71,11 +71,12 @@ const Plus = styled.div`
   width: 40px;
 `;
 
+let showAmount = 3;
+
 export default ({ data }) => {
   let [showPosts, setShowPosts] = useState([]);
   // let [showAmount, setShowAmount] = useState(1);
   let allPosts = data.posts;
-  let showAmount = 3;
 
   useEffect(() => {
     if (allPosts !== undefined) {
@@ -88,6 +89,7 @@ export default ({ data }) => {
     showAmount += 2;
     // setShowAmount((showAmount += 1));
     let postsToShow = allPosts.slice().splice(0, showAmount);
+    console.log(postsToShow);
     setShowPosts(postsToShow);
   };
 

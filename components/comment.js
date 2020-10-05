@@ -45,6 +45,7 @@ const TextWrapper = styled.div`
 
   p {
     margin: 0;
+    margin-top: 15px;
   }
 
   > div {
@@ -69,7 +70,7 @@ const TextTwo = styled.div`
   font-weight: 300;
 
   p:nth-child(n + 2) {
-    text-indent: 50px;
+    // text-indent: 50px;
   }
 
   @media (max-width: 992px) {

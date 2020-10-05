@@ -45,10 +45,11 @@ const Text = styled.div`
 
   p {
     margin: 0;
+    margin-top: 15px;
   }
 
   p:nth-child(n + 2) {
-    text-indent: 50px;
+    // text-indent: 50px;
   }
 `;
 
