@@ -52,12 +52,12 @@ export default () => {
 
   const [languages] = useState([
     {
-      code: "en",
-      name: "En",
-    },
-    {
       code: "fr",
       name: "Fr",
+    },
+    {
+      code: "en",
+      name: "En",
     },
     {
       code: "es",
@@ -73,10 +73,10 @@ export default () => {
 
     switch (lang) {
       case "en":
-        linkWrapperRefs.current[0].classList.add("active-lang");
+        linkWrapperRefs.current[1].classList.add("active-lang");
         break;
       case "fr":
-        linkWrapperRefs.current[1].classList.add("active-lang");
+        linkWrapperRefs.current[0].classList.add("active-lang");
         break;
       case "es":
         linkWrapperRefs.current[2].classList.add("active-lang");

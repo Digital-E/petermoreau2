@@ -109,7 +109,7 @@ export default (props) => {
   return (
     <Container>
       <ColLeft>
-        <Date>{moment(data.date).format("D.MM.YYYY")}</Date>
+        <Date>{moment(data.date).format("DD.MM.YYYY")}</Date>
         <Title>{data.title}</Title>
       </ColLeft>
       <ColRight>
