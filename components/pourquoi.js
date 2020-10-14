@@ -46,6 +46,7 @@ const Text = styled.div`
   font-weight: 300;
   padding: 1.5rem;
   text-align: center;
+  margin 0 auto;
 
   p {
     margin: 0;
