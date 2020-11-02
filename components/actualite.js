@@ -106,6 +106,11 @@ export default (props) => {
     setText(hiddenText);
   };
 
+  const showLess = () => {
+    setHasClicked(false);
+    setText(shownText.join(""));
+  };
+
   return (
     <Container>
       <ColLeft>
@@ -118,7 +123,7 @@ export default (props) => {
             __html: text,
           }}
         />
-        {!hasClicked && (
+        {!hasClicked ? (
           <ShowMore onClick={() => showMore()}>
             <Plus>
               <svg viewBox="0 0 39.42 39.42">
@@ -128,7 +133,20 @@ export default (props) => {
             </Plus>{" "}
             <span>{props.readMoreText}</span>
           </ShowMore>
-        )}
+          )
+          :
+          <ShowMore onClick={() => showLess()}>
+            <Plus>
+              <svg x="0px" y="0px" viewBox="0 0 39.4 39.4" xmlSpace="preserve">
+              <path d="M19.7,39.4C8.8,39.4,0,30.6,0,19.7S8.8,0,19.7,0s19.7,8.8,19.7,19.7l0,0C39.4,30.6,30.6,39.4,19.7,39.4z M19.7,2
+                C9.9,2,2,9.9,2,19.7s7.9,17.7,17.7,17.7s17.7-7.9,17.7-17.7l0,0C37.4,9.9,29.5,2,19.7,2z"/>
+              <path d="M18.7,17.8"/>
+              <polyline points="17.9,17.8 10.1,17.8 10.1,19.8 18.7,19.8 18.7,19.8 20.7,19.8 20.7,19.8 29.3,19.8 29.3,17.8 18.7,17.8 "/>
+              </svg>
+            </Plus>{" "}
+            <span>{props.readLessText}</span>
+          </ShowMore>          
+        }
       </ColRight>
     </Container>
   );

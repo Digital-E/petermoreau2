@@ -52,7 +52,11 @@ export default function Index({
     readMoreText: actualitesRawData
       ? actualitesRawData[0].node.read_more_text
       : null,
+    readLessText: actualitesRawData
+      ? actualitesRawData[0].node.read_less_text
+      : null,
     moreText: actualitesRawData ? actualitesRawData[0].node.more_text : null,
+    lessText: actualitesRawData ? actualitesRawData[0].node.less_text : null,
     posts: allPosts,
   };
 
