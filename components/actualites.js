@@ -97,10 +97,14 @@ const Plus = styled.div`
 
 let showAmount = 3;
 
+let actualitesPrevHeight;
+let actualitesCurrentHeight;
+
 export default ({ data }) => {
   let [showPosts, setShowPosts] = useState([]);
   // let [showAmount, setShowAmount] = useState(1);
   let allPosts = data.posts;
+
 
   useEffect(() => {
     if (allPosts !== undefined) {
@@ -118,12 +122,26 @@ export default ({ data }) => {
   };
 
   const showLess = () => {
+    actualitesPrevHeight = document.querySelector(".all-actualites").offsetHeight;
     showAmount -= 2;
     if(showAmount <= 3) showAmount = 3;
     // setShowAmount((showAmount += 1));
     let postsToShow = allPosts.slice().splice(0, showAmount);
     setShowPosts(postsToShow);
+
+
+    setTimeout(()=>{
+      scrollTo();
+    },150)
   };
+
+  const scrollTo = () => {
+    actualitesCurrentHeight = document.querySelector(".all-actualites").offsetHeight;
+
+    let actualitesNewHeight = actualitesPrevHeight - actualitesCurrentHeight;
+
+    window.gsap.to(window, {duration: 1, scrollTo: window.scrollY - actualitesNewHeight})
+  }
 
   return (
     <Container>
@@ -139,14 +157,14 @@ export default ({ data }) => {
           }}
         />
       </TitleWrapper>
-      <Actualites>
+      <Actualites className="all-actualites">
         {showPosts === undefined
           ? null
           : showPosts.map((post) => (
               <Actualite data={post} readMoreText={data.readMoreText} readLessText={data.readLessText} />
             ))}
       </Actualites>
-      <ShowMoreWrapper>
+      <ShowMoreWrapper className="show-more-wrapper">
       <SeeMoreText>{allPosts ? (showAmount !== allPosts.length ? data.moreText : data.lessText) : null}</SeeMoreText>
       <div>
         {showAmount > 3 ?
