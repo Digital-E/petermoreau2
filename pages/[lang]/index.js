@@ -94,7 +94,7 @@ export default function Index({
     <div className="container">
       <Layout
         preview={preview}
-        title="PETER MOREAU"
+        title="PETER & MOREAU"
         content={headerData.subTitleOne}
       >
         <div section-id="1" className="section section-1">
