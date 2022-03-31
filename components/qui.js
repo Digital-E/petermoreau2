@@ -78,6 +78,7 @@ const Name = styled.div`
   padding: 1.5rem;
   text-align: center;
   width: 100%;
+  text-transform: uppercase;
 
   @media (min-width: 992px) {
     font-size: 3rem;
@@ -269,7 +270,7 @@ export default ({ data }) => {
                 }
               >
                 <LeftCol>
-                  <img src={item.image.url} />
+                  <img src={item.image ? item.image.url : null} />
                 </LeftCol>
                 <RightCol>
                   <RightColTop>

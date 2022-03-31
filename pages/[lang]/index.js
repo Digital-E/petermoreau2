@@ -7,6 +7,7 @@ import {
   getAllPostsForHome,
   getHeaderData,
   getActualitesData,
+  getAllPostsForHomePaginate,
   getPourquoiData,
   getCommentData,
   getQuoiData,
@@ -142,7 +143,9 @@ export default function Index({
 export async function getStaticProps({ params, preview = false, previewData }) {
   let lang = convertLanguage(params.lang);
 
-  const allPosts = await getAllPostsForHome(lang, previewData);
+  let allPostsPaginate = [];
+
+  let allPosts = await getAllPostsForHome(lang, previewData);
   const headerRawData = await getHeaderData(lang, previewData);
   const actualitesRawData = await getActualitesData(lang, previewData);
   const pourquoiRawData = await getPourquoiData(lang, previewData);
@@ -150,6 +153,20 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const quoiRawData = await getQuoiData(lang, previewData);
   const quiRawData = await getQuiData(lang, previewData);
   const contactRawData = await getContactData(lang, previewData);
+
+  allPostsPaginate.push(...allPosts.edges)
+
+  // Paginate if returning over 20 results
+
+
+  while(allPosts.pageInfo.hasNextPage === true) {
+    let after = allPosts.pageInfo.endCursor;
+    let data = await getAllPostsForHomePaginate(lang, after);
+    allPosts = data;
+    allPostsPaginate.push(...data.edges);
+  }
+
+  allPosts = [...allPostsPaginate];
 
   return {
     props: {
