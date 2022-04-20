@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 export default function Meta({ title, content, ogImage }) {
+
   return (
     <Head>
       <link
@@ -36,7 +37,7 @@ export default function Meta({ title, content, ogImage }) {
         name={title}
         content={content}
       />
-      <meta property="og:image" content={ogImage.url ? ogImage.url : null} />
+      <meta name="image" property="og:image" content={ogImage !== null ? ogImage.url : null} />
       <title>{title}</title>
     </Head>
   );
