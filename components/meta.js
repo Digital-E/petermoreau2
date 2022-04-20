@@ -37,6 +37,8 @@ export default function Meta({ title, content, ogImage }) {
         name={title}
         content={content}
       />
+      <meta name="title" property="og:title" content={title} />
+      <meta name="description" property="og:description" content={content} />
       <meta name="image" property="og:image" content={ogImage !== null ? ogImage.url : null} />
       <title>{title}</title>
     </Head>
