@@ -97,6 +97,7 @@ export default function Index({
         preview={preview}
         title="PETER & MOREAU"
         content={headerData.subTitleOne}
+        ogImage={actualitesData.image}
       >
         <div section-id="1" className="section section-1">
           <Header data={headerData} />

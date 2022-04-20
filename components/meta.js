@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Meta({ title, content }) {
+export default function Meta({ title, content, ogImage }) {
   return (
     <Head>
       <link
@@ -36,7 +36,7 @@ export default function Meta({ title, content }) {
         name={title}
         content={content}
       />
-      <meta property="og:image" content="/images/logo.svg" />
+      <meta property="og:image" content={ogImage.url ? ogImage.url : null} />
       <title>{title}</title>
     </Head>
   );
