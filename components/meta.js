@@ -41,6 +41,18 @@ export default function Meta({ title, content, ogImage }) {
       <meta name="description" property="og:description" content={content} />
       <meta name="image" property="og:image" content={ogImage !== null ? ogImage.url : null} />
       <title>{title}</title>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-M22C9PTKTN" />
+      <script
+        dangerouslySetInnerHTML={{__html:
+          `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-M22C9PTKTN');
+          `
+        }}
+      />
     </Head>
   );
 }
