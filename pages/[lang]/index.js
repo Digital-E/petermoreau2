@@ -47,6 +47,7 @@ export default function Index({
     subTitleTwo: headerRawData ? headerRawData[0].node.text_two : null,
   };
 
+
   let actualitesData = {
     title: actualitesRawData ? actualitesRawData[0].node.title : null,
     image: actualitesRawData ? actualitesRawData[0].node.image : null,
@@ -154,6 +155,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const quoiRawData = await getQuoiData(lang, previewData);
   const quiRawData = await getQuiData(lang, previewData);
   const contactRawData = await getContactData(lang, previewData);
+
 
   allPostsPaginate.push(...allPosts.edges)
 
