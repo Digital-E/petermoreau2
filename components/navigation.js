@@ -77,7 +77,7 @@ export default ({ data }) => {
     if(index === -1) {
       return window.gsap.to(window, {duration: 1, scrollTo: 0})
     }
-    window.gsap.to(window, {duration: 1, scrollTo: `.section-${index + 2}`})
+    window.gsap.to(window, {duration: 1, scrollTo: `.section-${index + 3}`})
 
   }
 
@@ -92,14 +92,14 @@ export default ({ data }) => {
         if(section.offsetTop <= scrollPosition) {
           Array.from(document.querySelector(".nav").children).forEach(item => item.classList.remove("is-active"))
 
-        if(Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 2] === undefined) return
+        if(Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 3] === undefined) return
 
         if(scrollPosition === document.body.scrollHeight - window.innerHeight) {
-            return Array.from(document.querySelector(".nav").children)[5].classList.add("is-active")
+            return Array.from(document.querySelector(".nav").children)[4].classList.add("is-active")
           }
         
           
-          Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 2].classList.add("is-active")
+          Array.from(document.querySelector(".nav").children)[parseInt(section.getAttribute("section-id")) - 3].classList.add("is-active")
 
         }
       })
