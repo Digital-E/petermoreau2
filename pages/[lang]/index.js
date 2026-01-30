@@ -49,16 +49,16 @@ export default function Index({
 
 
   let actualitesData = {
-    title: actualitesRawData ? actualitesRawData[0].node.title : null,
-    image: actualitesRawData ? actualitesRawData[0].node.image : null,
-    readMoreText: actualitesRawData
+    title: actualitesRawData && actualitesRawData.length > 0 ? actualitesRawData[0].node.title : null,
+    image: actualitesRawData && actualitesRawData.length > 0 ? actualitesRawData[0].node.image : null,
+    readMoreText: actualitesRawData && actualitesRawData.length > 0
       ? actualitesRawData[0].node.read_more_text
       : null,
-    readLessText: actualitesRawData
+    readLessText: actualitesRawData && actualitesRawData.length > 0
       ? actualitesRawData[0].node.read_less_text
       : null,
-    moreText: actualitesRawData ? actualitesRawData[0].node.more_text : null,
-    lessText: actualitesRawData ? actualitesRawData[0].node.less_text : null,
+    moreText: actualitesRawData && actualitesRawData.length > 0 ? actualitesRawData[0].node.more_text : null,
+    lessText: actualitesRawData && actualitesRawData.length > 0 ? actualitesRawData[0].node.less_text : null,
     posts: allPosts,
   };
 
@@ -98,13 +98,17 @@ export default function Index({
         preview={preview}
         title="PETER & MOREAU"
         content={headerData.subTitleOne}
-        ogImage={actualitesData.image}
+        // ogImage={actualitesData.image}
+        ogImage={null}
       >
         <div section-id="1" className="section section-1">
           <Header data={headerData} />
         </div>
         <div section-id="2" className="section section-2">
-          <Actualites data={actualitesData} />
+          {
+            actualitesRawData && actualitesRawData.length > 0 &&
+            <Actualites data={actualitesData} />
+          }
         </div>
         <div section-id="3" className="section section-3">
           <Pourquoi data={pourquoiData} />
