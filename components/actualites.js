@@ -150,7 +150,7 @@ export default ({ data }) => {
           <Image src={data.image} />
         </ImageWrapper>
       ) : null}
-      <TitleWrapper>
+      {/* <TitleWrapper>
         <Title
           dangerouslySetInnerHTML={{
             __html: data.title && PrismicDOM.RichText.asHtml(data.title),
@@ -193,7 +193,7 @@ export default ({ data }) => {
                 :
                 null) : null}
         </div>
-      </ShowMoreWrapper>
+      </ShowMoreWrapper> */}
     </Container>
   );
 };

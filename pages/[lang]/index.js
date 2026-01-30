@@ -98,8 +98,8 @@ export default function Index({
         preview={preview}
         title="PETER & MOREAU"
         content={headerData.subTitleOne}
-        // ogImage={actualitesData.image}
-        ogImage={null}
+        ogImage={actualitesData.image}
+        // ogImage={null}
       >
         <div section-id="1" className="section section-1">
           <Header data={headerData} />
